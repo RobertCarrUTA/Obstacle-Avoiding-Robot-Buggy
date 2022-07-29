@@ -19,7 +19,7 @@ echo = InputDevice(17)
 sleep(2)
 
 # Sending and receiving ultrasounds
-# -----------------------------------------
+# ---------------------------------
 # The measurement of the time required for the ultrasound to propagate and be received
 # i.e. how long it takes to transmit and receive one pulse
 def get_pulse_time():
@@ -42,3 +42,15 @@ def get_pulse_time():
 
     # Return the time it took the ultrasound pulse to be sent and received
     return pulse_end - pulse_start
+
+
+# Calculate Obstacle Distance
+# ---------------------------
+# Sound travels through the air at a speed of about 343 meters per second. From the following equation, one can determine the distance: (speed * time)/2
+# This is because for every second recorded, the sound traveled 343 meters. Due to the fact that the sound travels from the sensor to the object and then
+# bounces back, it needs to be divided by 2.
+def calculate_distance(duration):
+    speed = 343 # speed of sound (meters per second)
+    distance = speed * duration / 2
+    
+    return distance
