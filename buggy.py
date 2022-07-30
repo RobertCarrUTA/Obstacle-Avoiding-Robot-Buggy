@@ -5,16 +5,17 @@
 from gpiozero import Robot, InputDevice, OutputDevice
 from time import sleep, time
 
-# (7, 8) and (9, 10) represent GPIO pins
-robin = Robot(left = (7, 8), right = (9, 10))
-duration = 10
-end_time = time() + duration
-running = True
-
 # The below code sets up our trig and echo pins
 # I picked GPIO pins 4 and 17, if you want to change them you can (know what you are doing)
 trig = OutputDevice(4)
 echo = InputDevice(17)
+
+# (7, 8) and (9, 10) represent GPIO pins
+robin = Robot(left = (7, 8), right = (9, 10))
+
+duration = 10
+end_time = time() + duration
+running = True
 
 sleep(2)
 
@@ -54,3 +55,22 @@ def calculate_distance(duration):
     distance = speed * duration / 2
     
     return distance
+
+# While the robot is running
+while running:
+    duration = get_pulse_time()
+    distance = calculate_distance(duration)
+
+    # This makes the robot turn left and drive forward if an object is detected 20 centimeters in front of the UDS sensor
+    # If no object is detected, then it moves forward
+    if distance < 0.2:
+        robin.left()
+        sleep(0.5)
+    else:
+        robin.forward()
+
+    if time() >= end_time:
+        running = False
+        robin.stop()
+
+    sleep(0.06)
