@@ -4,13 +4,15 @@
 ## Table of Contents
 - Obstacle Avoiding Robot Buggy
   * [About the Project](#about-the-project)
+  * [Compile Instructions](#compile-instructions)
+  * [Part List](#part-list)
 
 ## About the Project
-Python was used to create this robotic Raspberry Pi project. Ultra sonic distance senors will allow the robot to avoid obstacles while driving forward.
+Python was used to create this robotic Raspberry Pi project. Ultra sonic distance senors will allow the robot to avoid obstacles while driving forward. The forward, left, or right motion of the robot is controlled by two DC motors with attached wheels. In order for the robot to detect objects in front of it, it sends a pulse from its ultrasonic distance sensors. As soon as the robot detects an object 20 centimeters ahead of it, it will stop, turn left until no more obstructions are detected, then move forward again.
 
 ## Compile Instructions
 You need to know how GPIO pins work on the Raspberry Pi 3B, 3B+, or 4 to run this program. I recommend looking up a GPIO reference card for your model.
-* *Adding compile instructions later*
+* After all the connections are made correctly, type **python3 buggy.py** into the terminal where this file is located.
 
 ## Part List
 *I would reccomend getting good quality parts, my wires ended up breaking and my motor controller board arrived broken. Upon order of the parts online from AliExpress, delivery was expected in 30-50 days.*
